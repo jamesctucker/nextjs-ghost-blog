@@ -1,30 +1,38 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import { getPosts } from '../lib/posts'
+import { getRecentPosts, getFeaturedPosts } from '../lib/posts'
 
 export const getStaticProps = async () => {
-  const posts = await getPosts();
+  const recentPosts = await getRecentPosts();
+  const featuredPosts = await getFeaturedPosts();
 
-  if (!posts) {
+  if (!recentPosts) {
     return {
       notFound: true,
     };
   }
   return {
     props: {
-      posts,
+      recentPosts,
+      featuredPosts
     },
   };
 };
 
-export default function Home({ posts}) {
-  console.log(posts)
-  const postList = posts.map(post => {
+export default function Home({ featuredPosts, recentPosts }) {
+  const featuredPostsList = featuredPosts.map(post => {
     return (
       <li key={post.slug}>
         <Link href="posts/[slug]" as={`/posts/${post.slug}`}><a>{post.title}</a></Link>
+      </li>
+    )
+  })
+
+  const recentPostsList = recentPosts.map(post => {
+    return (
+      <li key={post.slug}>
+        <Link href="writing/[slug]" as={`/writing/${post.slug}`}><a>{post.title}</a></Link>
       </li>
     )
   })
@@ -36,9 +44,11 @@ export default function Home({ posts}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Posts</h1>
+        <h2>Featured Posts</h2>
+          {featuredPostsList}
+        <h2>Recent Posts</h2>
         <ul>
-          {postList}
+          {recentPostsList}
         </ul>
       </main>
     </div>
