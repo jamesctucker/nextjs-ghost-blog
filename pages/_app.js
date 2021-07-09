@@ -1,13 +1,16 @@
-import '../styles/globals.css'
-import Nav from '../components/Nav'
+import "../styles/globals.css";
+import "../styles/tailwind.css";
+import Nav from "../components/Nav";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div className="bg-gray-100 min-h-screen">
       <Nav />
-      <Component {...pageProps} />
-    </>
-  )
+      <div className="main-container">
+        <Component {...pageProps} />
+      </div>
+    </div>
+  );
 }
 
-export default MyApp
+export default MyApp;
