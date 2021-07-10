@@ -1,12 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import Head from "next/head";
 import Link from "next/link";
-import { getRecentPosts, getFeaturedPosts } from "../lib/posts";
+import { getRecentPosts } from "../lib/posts";
 import { transformPostDate } from "../lib/helpers/dates";
 
 export const getStaticProps = async () => {
   const recentPosts = await getRecentPosts();
-  const featuredPosts = await getFeaturedPosts();
 
   if (!recentPosts) {
     return {
@@ -16,27 +15,16 @@ export const getStaticProps = async () => {
   return {
     props: {
       recentPosts,
-      featuredPosts,
+      // featuredPosts,
     },
   };
 };
 
-export default function Home({ featuredPosts, recentPosts }) {
-  const featuredPostsList = featuredPosts.map((post) => {
-    return (
-      <li key={post.slug}>
-        <Link href="posts/[slug]" as={`/posts/${post.slug}`}>
-          <a>{post.title}</a>
-        </Link>
-        {post.excerpt && <p className="post-excerpt">{post.excerpt}</p>}
-        {post.updated_at && (
-          <p className="post-updated">{transformPostDate(post.updated_at)}</p>
-        )}
-      </li>
-    );
-  });
-
-  const recentPostsList = recentPosts.map((post) => {
+export default function Home({ recentPosts }) {
+  const sortedPosts = recentPosts.sort((a, b) =>
+    a.updated_at < b.updated_at ? 1 : -1
+  );
+  const recentPostsList = sortedPosts.map((post) => {
     return (
       <li key={post.slug}>
         <Link href="posts/[slug]" as={`/posts/${post.slug}`}>
@@ -81,11 +69,7 @@ export default function Home({ featuredPosts, recentPosts }) {
             </a>
           </Link>
         </section>
-        <h2 className="mt-8">Featured Posts</h2>
-        <section>
-          <ul>{featuredPostsList}</ul>
-        </section>
-        <h2 className="mt-8">Recent Posts</h2>
+        <h2 className="mt-16">Recent Posts</h2>
         <section>
           <ul>{recentPostsList}</ul>
         </section>

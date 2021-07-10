@@ -22,7 +22,11 @@ export const getStaticProps = async () => {
 };
 
 export default function allPosts({ posts }) {
-  const postList = posts.map((post) => {
+  const sortedPosts = posts.sort((a, b) =>
+    a.updated_at < b.updated_at ? 1 : -1
+  );
+
+  const postList = sortedPosts.map((post) => {
     return (
       <li key={post.id} className="flex">
         <Link href="/posts/[slug]" as={`/posts/${post.slug}`}>

@@ -37,6 +37,8 @@ export async function getStaticProps(context) {
 
 const PostPage = ({ post }) => {
   useEffect(() => {
+    console.log(post);
+
     hljs.highlightAll();
   }, []);
 

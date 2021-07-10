@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+h3 {
+  @apply font-bold my-3 text-lg;
+}
+
 h2 {
   @apply font-bold text-xl my-4;
 }
@@ -48,4 +52,8 @@ li {
 
 figcaption {
   @apply text-gray-500 text-sm my-2;
+}
+
+iframe {
+  @apply w-96 h-64;
 }
