@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
+import Head from "next/head";
 // import Head from "next/head";
 import parse from "html-react-parser";
 import { getSinglePost, getPosts } from "../../lib/posts";
@@ -42,6 +43,20 @@ const PostPage = ({ post }) => {
 
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+        <meta name="twitter:card" content="summary_large_image" />
+        {post.url && <meta name="twitter:site" content={post.url} />}
+        {post.twitter_title && (
+          <meta name="twitter:title" content={post.twitter_title} />
+        )}
+        {post.twitter_description && (
+          <meta name="twitter:description" content={post.twitter_description} />
+        )}
+        {post.twitter_image && (
+          <meta name="twitter:image" content={post.twitter_image} />
+        )}
+      </Head>
       <article className="flex flex-col justify-center">
         {post.feature_image && (
           <Image
