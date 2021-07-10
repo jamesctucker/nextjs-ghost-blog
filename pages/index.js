@@ -62,12 +62,18 @@ export default function Home({ featuredPosts, recentPosts }) {
             Hey, I'm James. Welcome to my online home! I'm a husband, dog dad,
             and software engineer located in Minneapolis.
           </p>
-          <p className="mb-8">
-            I'm currently building out a federal R&D tax credits platform at{" "}
+          <p>
+            I'm currently building out a platform that helps small businesses at{" "}
             <a href="https://mainstreet.com">MainStreet</a>. Previously, I
             helped create the foundational software for{" "}
-            <a href="https://soona.co">soona</a>, another Series A-raising
+            <a href="https://soona.co">soona</a>, another Series-A-raising
             startup.
+          </p>
+          <p>
+            I love building things and sharing what I've learned. And coming
+            from a non-traditional background myself, I'm passionate about
+            helping other get into this space. Some of the things I write about
+            include JavaScript, React, Vue, entrepreneurship, and career growth.
           </p>
           <Link href="/about">
             <a className="bg-blue-500 text-white text-base hover:bg-blue-700 hover:text-white rounded py-2 px-4">

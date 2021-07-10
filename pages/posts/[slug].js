@@ -39,7 +39,12 @@ const PostPage = ({ post }) => {
   useEffect(() => {
     hljs.highlightAll();
   }, []);
-  console.log(post);
+
+  const toBase64 = (str) => {
+    typeof window === "undefined"
+      ? Buffer.from(str).toString("base64")
+      : window.btoa(str);
+  };
 
   return (
     <>
@@ -64,6 +69,8 @@ const PostPage = ({ post }) => {
             alt="Article's feature image"
             width={500}
             height={300}
+            layout="responsive"
+            objectFit="cover"
           />
         )}
         <h1 className="text-3xl font-semibold">{post.title}</h1>
