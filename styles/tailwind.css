@@ -41,3 +41,11 @@ li {
 .post-updated {
   @apply text-gray-500 italic my-1 text-sm;
 }
+
+.kg-card {
+  @apply my-8;
+}
+
+figcaption {
+  @apply text-gray-500 text-sm my-2;
+}
