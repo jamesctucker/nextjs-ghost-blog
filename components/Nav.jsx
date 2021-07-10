@@ -29,15 +29,15 @@ export default function Nav() {
             About
           </a>
         </Link>
-        <Link href="/writing">
+        <Link href="/posts">
           <a
             className={
-              router.pathname === "/writing"
+              router.pathname === "/posts"
                 ? currentRouteStyle
                 : notCurrentRouteStyle
             }
           >
-            Writing
+            Posts
           </a>
         </Link>
         <Link href="https://twitter.com/tucker_dev">

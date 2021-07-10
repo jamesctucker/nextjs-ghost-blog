@@ -3,6 +3,7 @@ import Image from "next/image";
 // import Head from "next/head";
 import parse from "html-react-parser";
 import { getSinglePost, getPosts } from "../../lib/posts";
+import { transformPostDate } from "../../lib/helpers/dates";
 import { readingTime } from "@tryghost/helpers";
 import hljs from "highlight.js";
 import "highlight.js/styles/night-owl.css";
@@ -38,24 +39,7 @@ const PostPage = ({ post }) => {
     hljs.highlightAll();
   }, []);
   console.log(post);
-  const date = new Date(post.updated_at);
-  const month = date.getMonth();
-  const day = date.getDate();
-  const year = date.getFullYear();
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+
   return (
     <>
       <article className="flex flex-col justify-center">
@@ -67,14 +51,12 @@ const PostPage = ({ post }) => {
             height={300}
           />
         )}
-        <h1 className="text-3xl text-center font-semibold mt-2 mx-3">
-          {post.title}
-        </h1>
-        <div className="flex text-center mt-2 justify-center">
-          <p className="text-gray-400 mt-2 mb-0">
-            Updated {`${day} ${months[month - 1]} ${year}.`}&nbsp;
+        <h1 className="text-3xl font-semibold">{post.title}</h1>
+        <div className="flex text-center justify-between">
+          <p className="text-gray-400 mt-1 mb-0">
+            Updated {transformPostDate(post.updated_at)}&nbsp;
           </p>
-          <p className="text-gray-400 mt-2 mb-0">
+          <p className="text-gray-400 mt-1 mb-0">
             {readingTime(post, {
               minute: "1 minute read.",
               minutes: "% minute read.",

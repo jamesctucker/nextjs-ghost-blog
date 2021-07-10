@@ -10,6 +10,7 @@ export default function About() {
           content="Some potentially interesting facts about James."
         />
       </Head>
+      <h1>About</h1>
       <p>This is the about page.</p>
     </div>
   );
